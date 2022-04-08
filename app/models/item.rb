@@ -8,4 +8,8 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [50, 50]).processed
   end
+
+  def add_tax_price
+    (self.price * 1.10).round
+  end
 end
