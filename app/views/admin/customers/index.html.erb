@@ -1,0 +1,26 @@
+<h2>会員一覧</h2>
+
+<table>
+  <tr>
+  <th>会員ID</th>
+  <th>氏名</th>
+  <th>メールアドレス</th>
+  <td>
+    <th>ステータス</th>
+  </td>
+  </tr>
+  <% @customers.each do |customer| %>
+  <tr>
+    <td><%= customer.id %></td>
+    <td><%= customer.first_name %><%= customer.last_name %></td>
+    <td><%= customer.email %></td>
+    <td>
+      <% if customer.is_deleted == true %>
+        <%= '退会' %>
+      <% else %>
+        <%= '有効' %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

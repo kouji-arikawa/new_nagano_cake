@@ -1,34 +1,24 @@
-<h2>商品新規登録</h2>
-
-<%= form_with model: @item, url: admin_items_path do |f| %>
-
-<p>
-  商品画像
-  <%= f.file_field :image, accept: "image/*" %>
-</p>
-<p>
-  商品名
-  <%= f.text_field :name %>
-</p>
-<p>
-  商品説明
-  <%= f.text_area :introduction %>
-</p>
-<p>
-  ジャンル
-  <%= f.collection_select(:genre_id, Genre.all, :id, :name) %>
-</p>
-<p>
-  税抜価格
-  <%= f.number_field :price %> 円
-</p>
-<p>
-  販売ステータス
-  <%= f.label :is_active, '販売中' %>
-  <%= f.radio_button :is_active, true %>
-  <%= f.label :is_active, '販売停止中' %>
-  <%= f.radio_button :is_active, false %>
-</p>
-
-<%= f.submit '新規登録' %>
+<main>
+  <div class="container">
+    <div class="col-md-3">
+      <p class="mt-4 text-center" style="background-color: #f0f0f0">商品新規登録</p>
+    </div>
+    <%= form_with model: @item, url: admin_items_path do |f| %>
+    <div class="col-md-5 text-left">
+       <p class="font"> 商品画像　　　　<%= f.file_field :image, accept: "image/*" %></p>
+       <p class="font">商品名　　　　<%= f.text_field :name %></p>
+       <p class="font">商品説明　　　<%= f.text_area :introduction %></p>
+       <p class="font"> ジャンル　　　<%= f.collection_select(:genre_id, Genre.all, :id, :name) %></p>
+       <p class="font">税抜価格　　　<%= f.number_field :price %> 円</p>
+       <p class="font">
+         販売ステータス
+        <%= f.label :is_active, '販売中' %>
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active, '販売停止中' %>
+        <%= f.radio_button :is_active, false %>
+       </p>
+       <span class="good"><%= f.submit '新規登録', class: "btn btn-success" %></span>
+    </div>
+  </div>
+</main>
 <% end %>
