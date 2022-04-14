@@ -8,7 +8,11 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-root to: 'public/homes#top'
+
+  namespace :public do
+    root to: 'homes#top'
+    get 'homes/about' => 'homes#about', as: 'about'
+  end
 
   namespace :admin do
     root to: 'homes#top'
