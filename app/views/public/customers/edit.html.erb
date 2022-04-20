@@ -1,0 +1,10 @@
+<h5>会員情報編集</h5>
+<%= form_with model: @customer, url: update_information_path  do |f| %>
+<p>氏名　　　　<%= f.text_field :first_name %>　<%= f.text_field :last_name %></p>
+<p>フリガナ　　<%= f.text_field :first_name_kana %>　<%= f.text_field :last_name_kana %></p>
+<p>郵便番号　　<%= f.text_field :post_code %></p>
+<p>住所　　　　<%= f.text_field :address, :size=>"60" %></p>
+<p>電話番号　　<%= f.text_field :telephone_number %></p>
+<p>メールアドレス　<%= f.text_field :email %></p>
+<%= f.submit "編集内容を保存" %>　　<%= link_to "退会する", unsubscribe_path %>
+<% end %>

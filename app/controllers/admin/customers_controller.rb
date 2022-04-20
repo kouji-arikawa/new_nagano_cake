@@ -17,9 +17,9 @@ class Admin::CustomersController < ApplicationController
     redirect_to admin_customer_path(@customer.id)
   end
 
-  private
+ private
 
-  def store_params
+  def customer_params
     params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :post_code, :address, :telephone_number, :email, :is_deleted)
   end
 end

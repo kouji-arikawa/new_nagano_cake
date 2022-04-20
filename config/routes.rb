@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :admins, skip: [:passwords] ,controllers: {
+  devise_for :admins, skip: [:registrations, :passwords],controllers: {
     sessions: "admin/sessions"
   }
 
-  devise_for :customers, controllers: {
-    passwords: "public/passwords",
+  devise_for :customers, skip: [:passwords],controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
-  namespace :public do
+  scope module: :public do
     root to: 'homes#top'
     get 'homes/about' => 'homes#about', as: 'about'
+    get 'customers/my_page' => 'customers#show', as: 'my_page'
+    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
+    patch 'customers/information/update' => 'customers#update', as: 'update_information'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
   end
 
   namespace :admin do
