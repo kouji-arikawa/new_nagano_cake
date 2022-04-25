@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     patch 'customers/information/update' => 'customers#update', as: 'update_information'
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+    resources :addresses, only: [:new, :index, :edit, :create, :update, :destroy]
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:new, :index, :update, :destroy, :create]
   end
 
   namespace :admin do
