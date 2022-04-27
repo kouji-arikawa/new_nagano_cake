@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+  <div class="col-md-3 my-5 text-center" style="background-color: #f0f0f0;">
+    <p class="main-6">ショッピングカート</p>
+  </div>
+  <div class="col-md-7"></div>
+  <div class="col-md-2 my-5">
+    <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete %>
+  </div>
+  </div>
+  </div>
+  <div class="col-md-10">
+    <table class="table table-bordered mt-5">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40%">商品名</th>
+          <th scope="col" style="width: 15%">単価(税込)</th>
+          <th scope="col" style="width: 15%">数量</th>
+          <th scope="col" style="width: 15%">小計</th>
+          <th scope="col" style="width: 15%"></th>
+        </tr>
+      </thead>
+      <% @cart_items.each do |cart_item| %>
+      <tbody>
+        <tr>
+          <td><%= cart_item.item.name %></td>
+          <td class="price"><%= cart_item.item.with_tax_price %></td>
+          <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+          <td><%= f.select :amount, *[1..10] %>　　<%= f.submit "変更" %></td>
+          <% end %>
+          <td class="price"><%= cart_item.subtotal %></td>
+          <td><%= link_to "削除", cart_item_path(cart_item.id), method: :delete, "deta-confirm" => "本当に削除しますか？" %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+      <div class="row">
+        <div class="col-md-2 mt-4"><%= link_to "買い物を続ける", items_path %></div>
+        <div class="col-md-7"></div>
+        <div class="col-md-3">
+          <table class="table table-bordered mt-4">
+            <tr>
+              <td>合計金額</td>
+              <td class="price"><%= @total_price.round.to_s(:delimited) %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
