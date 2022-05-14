@@ -1,0 +1,29 @@
+<div class="containr">
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <p class="text-left"></p>
+      <table class="table table-center">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 25%">購入日時</th>
+            <th scope="col" style="width: 25%">購入者</th>
+            <th scope="col" style="width: 25%">注文個数</th>
+            <th scope="col" style="width: 25%">注文ステータス</th>
+          </tr>
+        </thead>
+        <% @orders.each do |order| %>
+        <tbody>
+          <tr>
+            <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
+            <td><%= order.name %></td>
+            <td><%= order.order_items.sum(:amount) %></td>
+            <td><%= order.status_i18n %></td>
+          </tr>
+        </tbody>
+        <% end %>
+        <%= paginate @orders %>
+      </table>
+    </div>
+  </div>
+</div>

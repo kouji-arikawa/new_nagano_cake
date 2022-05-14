@@ -1,7 +1,15 @@
 <main>
   <div class="container">
-    <div class="col-md-3 my-4 text-center" style="background-color: #f0f0f0;">
-      <p>商品一覧</p>
+    <div class="row">
+      <div class="col-md-3 my-4 text-center" style="background-color: #f0f0f0;">
+        <p>商品一覧</p>
+      </div>
+      <div class="col-7"></div>
+      <div class="col-2 mt-2">
+        <%= link_to new_admin_item_path, method: :get do %>
+          <i class="fa-regular fa-circle-plus fa-4x"></i>
+        <% end %>
+      </div>
     </div>
     <table class="table md-9">
       <tr>
@@ -29,5 +37,6 @@
       </tbody>
       <% end %>
     </table>
+    <%= paginate @items %>
   </div>
 </main>

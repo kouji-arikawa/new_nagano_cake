@@ -3,14 +3,17 @@
   <div class="row">
     <% @items.each do |item| %>
     <div class="col-3 mt-3">
-      <%= image_tag item.image, size: "200X200" %>
+      <%= link_to item_path(item.id) do %>
+        <%= image_tag item.image, size: "100X100" %>
+      <% end %>
       <p class="text-left mt-3">
-        <%= item.name %>
+        <%= link_to item.name, item_path(item.id) %>
       </p>
       <p class="text-left">
         ￥<%= item.price %>
       </p>
     </div>
     <% end %>
+    <%= paginate @items %>
   </div>
 </div>

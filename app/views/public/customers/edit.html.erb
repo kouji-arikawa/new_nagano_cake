@@ -1,10 +1,47 @@
-<h5>会員情報編集</h5>
-<%= form_with model: @customer, url: update_information_path  do |f| %>
-<p>氏名　　　　<%= f.text_field :first_name %>　<%= f.text_field :last_name %></p>
-<p>フリガナ　　<%= f.text_field :first_name_kana %>　<%= f.text_field :last_name_kana %></p>
-<p>郵便番号　　<%= f.text_field :post_code %></p>
-<p>住所　　　　<%= f.text_field :address, :size=>"60" %></p>
-<p>電話番号　　<%= f.text_field :telephone_number %></p>
-<p>メールアドレス　<%= f.text_field :email %></p>
-<%= f.submit "編集内容を保存" %>　　<%= link_to "退会する", unsubscribe_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h5 class="my-4 text-center" style="background-color: #f0f0f0;">会員情報編集</h5>
+    </div>
+  </div>
+    <%= form_with model: @customer, url: update_information_path  do |f| %>
+  <div class="col-9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 30%">氏名</th>
+          <th scope="col" style="width: 70%"><%= f.text_field :first_name %>　　<%= f.text_field :last_name %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">フリガナ</th>
+          <th scope="col" style="width: 70%"><%= f.text_field :first_name_kana %>　　<%= f.text_field :last_name_kana %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">郵便番号</th>
+          <th scope="col" style="width: 70%"><%= f.text_field :post_code %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">住所</th>
+          <th scope="col" style="width: 70%"><%= f.text_field :address, :size=>"60" %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">電話番号</th>
+          <th scope="col" style="width: 70%"><%= f.text_field :telephone_number %></th>
+        </tr>
+        <tr>
+          <th scope="col" style="width: 30%">メールアドレス</th>
+          <th scope="col" style="width: 70%"><%= f.text_field :email %></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-3">
+      <%= f.submit "編集内容を保存", class: "btn btn-success btn-block" %>
+    </div>
+    <div class="col-1"></div>
+    <div class="col-2"><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %></div>
+  </div>
+</div>
 <% end %>

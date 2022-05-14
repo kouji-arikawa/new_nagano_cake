@@ -1,16 +1,16 @@
 class Public::CartItemsController < ApplicationController
-
   def new
     @cart_item = CartItem.new
   end
 
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
     @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
   def create
     @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
     @cart_item.save
     redirect_to cart_items_path
   end

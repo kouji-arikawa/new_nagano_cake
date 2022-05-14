@@ -10,10 +10,14 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     @customer.update(customer_params)
-    redirect_to edit_information_path
+    redirect_to my_page_path
   end
 
   def unsubscribe
+    @customer = current_customer
+    @customer.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
   def withdraw

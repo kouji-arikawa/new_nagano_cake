@@ -1,12 +1,52 @@
-<h5>マイページ</h5>
-
-<p>登録情報</p>
-<p>氏名　　　<%= @customer.first_name %>　<%= @customer.last_name %></p>
-<p>カナ　　　<%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></p>
-<p>郵便番号　<%= @customer.post_code %></p>
-<p>住所　　　<%= @customer.address %></p>
-<p>電話番号　<%= @customer.telephone_number %></p>
-<p>メールアドレス　<%= @customer.email %></p>
-
-<h5>配送先</h5>
-<h5>注文一覧</h5>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <h5 class="my-4 text-center" style="background-color: #f0f0f0;">マイページ</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <p class="my_page">登録情報　　<%= link_to "編集する", edit_information_path(current_customer), class: "btn btn-success" %></p>
+    </div>
+  </div>
+  <div class="col-9">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 30%">氏名</th>
+        <th scope="col" style="width: 70%"><%= @customer.first_name %>　<%= @customer.last_name %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">カナ</th>
+        <th scope="col" style="width: 70%"><%= @customer.first_name_kana %>　<%= @customer.last_name_kana %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">郵便番号</th>
+        <th scope="col" style="width: 70%"><%= @customer.post_code %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">住所</th>
+        <th scope="col" style="width: 70%"><%= @customer.address %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">電話番号</th>
+        <th scope="col" style="width: 70%"><%= @customer.telephone_number %></th>
+      </tr>
+      <tr>
+        <th scope="col" style="width: 30%">メールアドレス</th>
+        <th scope="col" style="width: 70%"><%= @customer.email %></th>
+      </tr>
+    </thead>
+  </table>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <p class="my_page">配送先　　　　<%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <p class="my_page">注文履歴　　　<%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></p>
+    </div>
+  </div>
+</div>

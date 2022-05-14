@@ -1,4 +1,5 @@
 class Public::AddressesController < ApplicationController
+  before_action :authenticate_customer!, except: :index
 
   def create
     address = Address.new(addresses_params)
@@ -9,7 +10,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @address = Address.new
-    @addresses = Address.all
+    @addresses = current_customer.addresses.all
   end
 
   def edit
